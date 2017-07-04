@@ -1,10 +1,10 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CSModel'
-  s.version          = '0.0.1'
-  s.summary          = 'CSModel is a consice and efficient model framework for iOS/OSX.'
+  s.version          = '0.1.0'
+  s.summary          = 'CSModel is a concise and efficient model framework for iOS/OSX, and provides nested Model to compare values and copy values.'
   s.description      = <<-DESC
-   CSModel is a consice and efficient model framework for iOS/OSX. '
+   CSModel is a concise and efficient model framework for iOS/OSX. '
    It Provides many data-model methods:
    * Converts json to any object, or convert any object to json.
    * Serializes a model to provide class info and object properties.
@@ -19,7 +19,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'CSModel/*.{h,m}'
   s.public_header_files = 'CSModel/*.{h}'
-  s.libraries = 'sqlite3'
   s.frameworks = 'UIKit', 'CoreFoundation'
 
 end

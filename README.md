@@ -56,7 +56,7 @@ Person *p = [Person cs_modelWithJSONObject:json];
  Person *np = [Person cs_modelWithJSONString:jsonStr];
 	
 // 3. Converting the Model to an JSON:
-id *json = [p cs_JSONObject];
+id json = [p cs_JSONObject];
 
 // 4. Converting the Model to an NSString:
 NSString *jsonStr =  [p cs_JSONString];
@@ -64,6 +64,27 @@ NSString *jsonStr =  [p cs_JSONString];
 // 5. Converting the JSON Array to an Model Array:
 NSArray *array = [Person cs_modelArrayWithJSONObject:jsonArray];
 ```
+
+### How to use Protocol 
+```objc
+// 1. If a value of key in the json is an array,The json array will be
+// conveted to model array by implementing this method.
++ (NSDictionary<NSString *,NSString *> *)CSModelKeyWithPropertyMapping
+    return @{@"user_id":@"userId"};
+}
+
+// 2. If a value of key is a JSON object , implement this method to convert
+// the JSON object to a model's properites.
++ (NSDictionary<NSString *,Class> *)CSModelArrayWithModelMapping{
+    return @{@"child":[Person class]};
+}
+
+// 3. The mapping of model property and json key
++ (NSDictionary<NSString *,Class> *)CSModelDictionaryKeyWithModelMapping{
+    return @{@"child":[Person class]};
+}
+```
+
 ### The comparing and copying method
 ```objc
 // Model 

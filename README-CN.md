@@ -56,13 +56,30 @@ Person *p = [Person cs_modelWithJSONObject:json];
  Person *np = [Person cs_modelWithJSONString:jsonStr];
 	
 // 3. 将 Model 转换为 JSON 对象:
-id *json = [p cs_JSONObject];
+id json = [p cs_JSONObject];
 
 // 4. 将 Model 转换为 JSON String:
 NSString *jsonStr =  [p cs_JSONString];
 
 // 5. 将 JSON 数组转换为 Model 数组:
 NSArray *array = [Person cs_modelArrayWithJSONObject:jsonArray];
+```
+### 使用协议
+```objc
+// 1. JSON中的键值名称和模型中的键值进行映射
++ (NSDictionary<NSString *,NSString *> *)CSModelKeyWithPropertyMapping
+    return @{@"user_id":@"userId"};
+}
+
+// 2. 如果JSON数组中嵌套另一个JSON数组，实现下列方法通过键值映射为模型数组
++ (NSDictionary<NSString *,Class> *)CSModelArrayWithModelMapping{
+    return @{@"child":[Person class]};
+}
+
+// 3. 如果JSON数组中嵌套另一个JSON对象，实现下列方法通过键值映射为模型
++ (NSDictionary<NSString *,Class> *)CSModelDictionaryKeyWithModelMapping{
+    return @{@"child":[Person class]};
+}
 ```
 ### Model 的比较与拷贝
 ```objc

@@ -160,21 +160,21 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A class mapper
  */
--(nonnull NSDictionary <NSString *,Class> *)CSModelArrayWithModelMapping;
++ (nonnull NSDictionary <NSString *,Class> *)CSModelArrayWithModelMapping;
 
 /**
- If a value of key is an JSON object , implement this method to
+ If a value of key is a JSON object , implement this method to
  convert the JSON object to a model's properites.
  
  @return A class mapper for dictionary key
  */
--(nonnull NSDictionary <NSString *,Class>  *)CSModelDictionaryKeyWithModelMapping;
++ (nonnull NSDictionary <NSString *,Class>  *)CSModelDictionaryKeyWithModelMapping;
 /**
  The mapping of model property and json key
  
  @return A custom mapper
  */
-+(nonnull NSDictionary <NSString *,NSString *> *)CSModelKeyWithPropertyMapping;
++ (nonnull NSDictionary <NSString *,NSString *> *)CSModelKeyWithPropertyMapping;
 @end
 
 

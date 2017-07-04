@@ -291,8 +291,8 @@
                         }else if(obj == (id)kCFNull){
                             break;
                         }else if(propertyInfo->_objectType == CSObjectTypeNSDictionary && [obj isKindOfClass:[NSDictionary class]]){
-                            if ([model respondsToSelector:@selector(CSModelDictionaryKeyWithModelMapping)]) {
-                                NSDictionary *modelMappingDictionary = [model CSModelDictionaryKeyWithModelMapping] ;
+                            if ([cls respondsToSelector:@selector(CSModelDictionaryKeyWithModelMapping)]) {
+                                NSDictionary *modelMappingDictionary = [cls CSModelDictionaryKeyWithModelMapping] ;
                                 if ([modelMappingDictionary objectForKey:key] != nil) {
                                     Class DictClassModel =  [modelMappingDictionary objectForKey:key];
                                     if(DictClassModel != nil){
@@ -309,8 +309,8 @@
                                 // error
                             }
                         }else if (propertyInfo->_objectType == CSObjectTypeNSArray && [obj isKindOfClass:[NSArray class]]) {
-                            if ([model respondsToSelector:@selector(CSModelArrayWithModelMapping)]) {
-                                NSDictionary *modelMappingArray = [model performSelector:@selector(CSModelArrayWithModelMapping)] ;
+                            if ([cls respondsToSelector:@selector(CSModelArrayWithModelMapping)]) {
+                                NSDictionary *modelMappingArray = [cls performSelector:@selector(CSModelArrayWithModelMapping)] ;
                                 if ([modelMappingArray objectForKey:key] != nil) {
                                     Class ArrayClassModel =  [modelMappingArray objectForKey:key];
                                     if (ArrayClassModel != nil) {
@@ -426,8 +426,8 @@
                         }else if(obj == (id)kCFNull){
                             break;
                         }else if(propertyInfo->_objectType == CSObjectTypeNSDictionary && [obj isKindOfClass:[NSDictionary class]]){
-                            if ([model respondsToSelector:@selector(CSModelDictionaryKeyWithModelMapping)]) {
-                                NSDictionary *modelMappingDictionary = [model CSModelDictionaryKeyWithModelMapping] ;
+                            if ([cls respondsToSelector:@selector(CSModelDictionaryKeyWithModelMapping)]) {
+                                NSDictionary *modelMappingDictionary = [cls CSModelDictionaryKeyWithModelMapping] ;
                                 if ([modelMappingDictionary objectForKey:key] != nil) {
                                     Class DictClassModel =  [modelMappingDictionary objectForKey:key];
                                     if(DictClassModel != nil){
@@ -442,8 +442,8 @@
                                 }
                             }
                         }else if (propertyInfo->_objectType == CSObjectTypeNSArray && [obj isKindOfClass:[NSArray class]]) {
-                            if ([model respondsToSelector:@selector(CSModelArrayWithModelMapping)]) {
-                                NSDictionary *modelMappingArray = [model performSelector:@selector(CSModelArrayWithModelMapping)] ;
+                            if ([cls respondsToSelector:@selector(CSModelArrayWithModelMapping)]) {
+                                NSDictionary *modelMappingArray = [cls performSelector:@selector(CSModelArrayWithModelMapping)] ;
                                 if ([modelMappingArray objectForKey:key] != nil) {
                                     Class ArrayClassModel =  [modelMappingArray objectForKey:key];
                                     if (ArrayClassModel != nil) {
