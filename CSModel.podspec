@@ -10,7 +10,6 @@ Pod::Spec.new do |s|
    * Serializes a model to provide class info and object properties.
    * Implementations of `NSCoding`, `NSCopying` and `isEqual:`.
                        DESC
-  s.name         = 'CSModel'
   s.homepage         = 'https://github.com/Chasel-Shao/CSModel.git'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Chasel-Shao' => '753080265@qq.com' }

@@ -7,21 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F37822ED1F04C49A0088761F /* NSObject+CSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F37822D11F04C3C30088761F /* NSObject+CSModel.m */; };
-		F3A2C7291F064416006D15CE /* CSModel.h in Headers */ = {isa = PBXBuildFile; fileRef = F37822FD1F04E0AB0088761F /* CSModel.h */; };
-		F3A2C72C1F064542006D15CE /* NSObject+CSModel.h in Headers */ = {isa = PBXBuildFile; fileRef = F37822D01F04C3C30088761F /* NSObject+CSModel.h */; };
+		F30FD4A81F064DB700D2FB39 /* NSObject+CSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F30FD4A71F064DB700D2FB39 /* NSObject+CSModel.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F309BEA11F064D5E00C26710 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		F309BE921F0647EE00C26710 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
-		F37822D01F04C3C30088761F /* NSObject+CSModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+CSModel.h"; sourceTree = "<group>"; };
-		F37822D11F04C3C30088761F /* NSObject+CSModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CSModel.m"; sourceTree = "<group>"; };
-		F37822E51F04C48C0088761F /* CSModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CSModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F37822FD1F04E0AB0088761F /* CSModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSModel.h; sourceTree = "<group>"; };
+		F309BEA31F064D5E00C26710 /* libCSModel-static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libCSModel-static.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F30FD4A51F064DB700D2FB39 /* CSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSModel.h; sourceTree = "<group>"; };
+		F30FD4A61F064DB700D2FB39 /* NSObject+CSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CSModel.h"; sourceTree = "<group>"; };
+		F30FD4A71F064DB700D2FB39 /* NSObject+CSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CSModel.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F37822E11F04C48C0088761F /* Frameworks */ = {
+		F309BEA01F064D5E00C26710 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -31,38 +40,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F337B83D1EF900B300ADA250 = {
+		F309BE9A1F064D5E00C26710 = {
 			isa = PBXGroup;
 			children = (
-				F37822CF1F04C3C30088761F /* CSModel */,
-				F337B8491EF900B300ADA250 /* Supporting Files */,
-				F337B8471EF900B300ADA250 /* Products */,
+				F30FD4A41F064DB700D2FB39 /* CSModel */,
+				F309BEA41F064D5E00C26710 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		F337B8471EF900B300ADA250 /* Products */ = {
+		F309BEA41F064D5E00C26710 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F37822E51F04C48C0088761F /* CSModel.framework */,
+				F309BEA31F064D5E00C26710 /* libCSModel-static.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F337B8491EF900B300ADA250 /* Supporting Files */ = {
+		F30FD4A41F064DB700D2FB39 /* CSModel */ = {
 			isa = PBXGroup;
 			children = (
-				F309BE921F0647EE00C26710 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			path = CSModel;
-			sourceTree = "<group>";
-		};
-		F37822CF1F04C3C30088761F /* CSModel */ = {
-			isa = PBXGroup;
-			children = (
-				F37822FD1F04E0AB0088761F /* CSModel.h */,
-				F37822D01F04C3C30088761F /* NSObject+CSModel.h */,
-				F37822D11F04C3C30088761F /* NSObject+CSModel.m */,
+				F30FD4A51F064DB700D2FB39 /* CSModel.h */,
+				F30FD4A61F064DB700D2FB39 /* NSObject+CSModel.h */,
+				F30FD4A71F064DB700D2FB39 /* NSObject+CSModel.m */,
 			);
 			name = CSModel;
 			path = ../CSModel;
@@ -70,94 +69,70 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		F37822E21F04C48C0088761F /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F3A2C7291F064416006D15CE /* CSModel.h in Headers */,
-				F3A2C72C1F064542006D15CE /* NSObject+CSModel.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		F37822E41F04C48C0088761F /* CSModel */ = {
+		F309BEA21F064D5E00C26710 /* CSModel-static */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F37822EA1F04C48C0088761F /* Build configuration list for PBXNativeTarget "CSModel" */;
+			buildConfigurationList = F309BEAC1F064D5E00C26710 /* Build configuration list for PBXNativeTarget "CSModel-static" */;
 			buildPhases = (
-				F37822E01F04C48C0088761F /* Sources */,
-				F37822E11F04C48C0088761F /* Frameworks */,
-				F37822E21F04C48C0088761F /* Headers */,
-				F37822E31F04C48C0088761F /* Resources */,
+				F309BE9F1F064D5E00C26710 /* Sources */,
+				F309BEA01F064D5E00C26710 /* Frameworks */,
+				F309BEA11F064D5E00C26710 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = CSModel;
-			productName = CSModel;
-			productReference = F37822E51F04C48C0088761F /* CSModel.framework */;
-			productType = "com.apple.product-type.framework";
+			name = "CSModel-static";
+			productName = "CSModel-static";
+			productReference = F309BEA31F064D5E00C26710 /* libCSModel-static.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F337B83E1EF900B300ADA250 /* Project object */ = {
+		F309BE9B1F064D5E00C26710 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = chasel;
 				TargetAttributes = {
-					F37822E41F04C48C0088761F = {
+					F309BEA21F064D5E00C26710 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 626KGQ43W3;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = F337B8411EF900B300ADA250 /* Build configuration list for PBXProject "CSModel" */;
+			buildConfigurationList = F309BE9E1F064D5E00C26710 /* Build configuration list for PBXProject "CSModel-static" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
-			mainGroup = F337B83D1EF900B300ADA250;
-			productRefGroup = F337B8471EF900B300ADA250 /* Products */;
+			mainGroup = F309BE9A1F064D5E00C26710;
+			productRefGroup = F309BEA41F064D5E00C26710 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F37822E41F04C48C0088761F /* CSModel */,
+				F309BEA21F064D5E00C26710 /* CSModel-static */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		F37822E31F04C48C0088761F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		F37822E01F04C48C0088761F /* Sources */ = {
+		F309BE9F1F064D5E00C26710 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F37822ED1F04C49A0088761F /* NSObject+CSModel.m in Sources */,
+				F30FD4A81F064DB700D2FB39 /* NSObject+CSModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		F337B85B1EF900B300ADA250 /* Debug */ = {
+		F309BEAA1F064D5E00C26710 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -205,7 +180,7 @@
 			};
 			name = Debug;
 		};
-		F337B85C1EF900B300ADA250 /* Release */ = {
+		F309BEAB1F064D5E00C26710 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -247,72 +222,48 @@
 			};
 			name = Release;
 		};
-		F37822EB1F04C48C0088761F /* Debug */ = {
+		F309BEAD1F064D5E00C26710 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 626KGQ43W3;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.chasel.CSModel;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		F37822EC1F04C48C0088761F /* Release */ = {
+		F309BEAE1F064D5E00C26710 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 626KGQ43W3;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.chasel.CSModel;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F337B8411EF900B300ADA250 /* Build configuration list for PBXProject "CSModel" */ = {
+		F309BE9E1F064D5E00C26710 /* Build configuration list for PBXProject "CSModel-static" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F337B85B1EF900B300ADA250 /* Debug */,
-				F337B85C1EF900B300ADA250 /* Release */,
+				F309BEAA1F064D5E00C26710 /* Debug */,
+				F309BEAB1F064D5E00C26710 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F37822EA1F04C48C0088761F /* Build configuration list for PBXNativeTarget "CSModel" */ = {
+		F309BEAC1F064D5E00C26710 /* Build configuration list for PBXNativeTarget "CSModel-static" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F37822EB1F04C48C0088761F /* Debug */,
-				F37822EC1F04C48C0088761F /* Release */,
+				F309BEAD1F064D5E00C26710 /* Debug */,
+				F309BEAE1F064D5E00C26710 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = F337B83E1EF900B300ADA250 /* Project object */;
+	rootObject = F309BE9B1F064D5E00C26710 /* Project object */;
 }

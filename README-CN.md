@@ -4,34 +4,34 @@ CSModel
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/Chasel-Shao/CSModel/master/LICENSE)&nbsp;
 [![CocoaPods](http://img.shields.io/cocoapods/v/CSModel.svg?style=flat)](http://cocoapods.org/pods/CSModel)&nbsp;
 
-:book: English Documentation | [:book: 中文文档](README-CN.md)
+[:book: English Documentation](README.md) | :book: 中文文档
 
-Introduce
+基础介绍
 ==============
-CSModel is a concise and efficient model framework for iOS/OSX, and provides nested Model to compare values and copy values.
+CSModel 是一个简洁高效的Model和JSON转换的框架，并且支持嵌套模型进行值拷贝和值比较等等。
 
-Features
+特性
 ==============
 
-- **Lightweight**: Easily and simpily to use，less source files
-- **Noninvasive**: No need to inherit other class
-- **Type Safe**: Checks every type of the object, and deal with the null in json
-- **High Performance**: Parses the json very fast and supported the nested model
-- **Compare** : Supported the value compare which can be multinest model
-- **Copy** : Provides the nested model copy from another model
+- **简洁轻量**: 方法简单，源码文件比较少
+- **无侵入性**: 无需继承自其他基类
+- **类型安全**: 检查每个对象类型，并且自动处理json中的null
+- **高性能**: 解析速度快，并且支持解析model类继承其他model类
+- **比较**: 支持模型值比较，并且可以是多层嵌套的模型
+- **拷贝**: 提供多层嵌套模型模型，进行值拷贝
 
-Performance
+性能
 ==============
-The time cost of disposing 10000 times GithubUser objects (iPhone 6s).
+处理 GithubUser 数据 10000 次耗时统计 (iPhone 6s):
 
 ![Benchmark result](https://raw.githubusercontent.com/Chasel-Shao/CSModel/master/Benchmark/result.png
 )
 
 
-Getting Started
+使用方法
 ==============
 
-### The conversion between JSON, Model and String
+### Model、JSON 以及 String 相互转换
 ```objc
 // JSON:
 {
@@ -49,22 +49,22 @@ Getting Started
 @implementation Person
 @end
 	
-// 1. Converting the JSON to an Model:
+// 1. 将 JSON 转换为 Model:
 Person *p = [Person cs_modelWithJSONObject:json];
 
-// 2. Converting the String to an Model:
+// 2. 将 JSON String 转换为 Model:
  Person *np = [Person cs_modelWithJSONString:jsonStr];
 	
-// 3. Converting the Model to an JSON:
+// 3. 将 Model 转换为 JSON 对象:
 id *json = [p cs_JSONObject];
 
-// 4. Converting the Model to an NSString:
+// 4. 将 Model 转换为 JSON String:
 NSString *jsonStr =  [p cs_JSONString];
 
-// 5. Converting the JSON Array to an Model Array:
+// 5. 将 JSON 数组转换为 Model 数组:
 NSArray *array = [Person cs_modelArrayWithJSONObject:jsonArray];
 ```
-### The comparing and copying method
+### Model 的比较与拷贝
 ```objc
 // Model 
 @interface Teacher : NSObject
@@ -75,25 +75,25 @@ NSArray *array = [Person cs_modelArrayWithJSONObject:jsonArray];
 @implementation Teacher
 @end
 
-// 1. Comparing the value of two models, supported the nested Model:
+// 1. 比较两个对象的值，支持嵌套比较:
 BOOL isSame = [p cs_isEqualToValue:p2];
 
-// 2. Copying the value of an model, supported the nested Model:
+// 2. 拷贝对象，支持嵌套拷贝:
 Person *p2 = [p cs_modelCopy];
 
-// 3. Copying from the different model:
+// 3. 不同对象之间的值拷贝：
 Teacher *teacher1 = [Teacher cs_modelCopyFromModel:p];
 ```
-### The description method
+### Model 的 description 的实现
 ```objc
-// Implementing the method in the `.m file` of the Model
+// 在模型的.m文件中实现以下方法
 -(NSString *)description{
     return [self cs_description];
 }
 ```
-### The coding method
+### Model 的 Coding 的实现
 ```objc
-// Implementing the following method in the `.m file` of the Model
+// 在模型的.m文件中实现以下方法
 -(void)encodeWithCoder:(NSCoder *)aCoder{
     [self cs_encode:aCoder];
 }
@@ -101,30 +101,30 @@ Teacher *teacher1 = [Teacher cs_modelCopyFromModel:p];
     return [self cs_decoder:aDecoder];
 }
 ```
-Installation
+集成
 ==============
 
-### Installation with CocoaPods
+### CocoaPods
 
-1. Specify the `pod 'CSModel'` to the Podfile
-2. Then, run `pod install` or `pod update`
-3. Import the header files \<CSModel/CSModel.h\>
-
-
-### Manual installation
-
-1. Download the  CSModel source files
-2. Import the CSModel.h and related source files
+1. 在 Podfile 中添加 `pod 'CSModel'`
+2. 执行 `pod install` 或 `pod update`
+3. 导入 \<CSModel/CSModel.h\>
 
 
+### 手动安装
 
-Author
+1. 下载 CSModel 
+2. 手动导入 CSModel.h 及其源码文件
+
+
+
+作者
 ==============
 - [Chasel-Shao](https://github.com/Chasel-Shao) 753080265@qq.com
 
 
-License
+许可证
 ==============
-CSModel is released under the MIT license. See LICENSE for details.
+CSModel 使用 MIT 许可证，详情见 LICENSE 文件。
 
 
