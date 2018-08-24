@@ -29,7 +29,7 @@
 
 @implementation NSObject (CSModel)
 
--(id)cs_JSONObject{
+- (id)cs_JSONObject{
     if ([self isKindOfClass:[NSString class]]) {
         NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[((NSString *)self) dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         return jsonObject;
@@ -41,13 +41,13 @@
     }
 }
 
--(NSString *)cs_JSONString{
+- (NSString *)cs_JSONString{
     id jsonObject = [self cs_JSONObject];
     NSData *jsonData =  [NSJSONSerialization dataWithJSONObject:jsonObject options:0 error:nil];
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
--(id)cs_modelToKeyValues{
+- (id)cs_modelToKeyValues{
     if ([self isKindOfClass:[NSString class]]) {
         NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[((NSString *)self) dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         return jsonObject;
@@ -68,7 +68,7 @@
     }
 }
 
-+(id)cs_modelCopyFromModel:(id)model{
++ (id)cs_modelCopyFromModel:(id)model{
     id one = self.class.new;
     CSClassInfo *oneClassInfo = getClassInfo(self);
     CSClassInfo *twoClassInfo = getClassInfo([model class]);
@@ -160,7 +160,7 @@
     return one;
 }
 
--(id)cs_modelCopy{
+- (id)cs_modelCopy{
     id model = self.class.new;
     CSClassInfo *selfClassInfo = getClassInfo(self.class);
     if (selfClassInfo->_isJSONMetaType) return self;
@@ -267,7 +267,7 @@
 }
 
 
-+(id)cs_modelWithJSONObject:(id)jsonObject{
++ (id)cs_modelWithJSONObject:(id)jsonObject{
     Class cls = [self class];
     id model = [cls new];
     CSClassInfo *selfClassInfo = getClassInfo(cls);
@@ -291,8 +291,8 @@
                         }else if(obj == (id)kCFNull){
                             break;
                         }else if(propertyInfo->_objectType == CSObjectTypeNSDictionary && [obj isKindOfClass:[NSDictionary class]]){
-                            if ([cls respondsToSelector:@selector(CSModelDictionaryKeyWithModelMapping)]) {
-                                NSDictionary *modelMappingDictionary = [cls CSModelDictionaryKeyWithModelMapping] ;
+                            if ([model respondsToSelector:@selector(CSModelDictionaryKeyWithModelMapping)]) {
+                                NSDictionary *modelMappingDictionary = [model CSModelDictionaryKeyWithModelMapping] ;
                                 if ([modelMappingDictionary objectForKey:key] != nil) {
                                     Class DictClassModel =  [modelMappingDictionary objectForKey:key];
                                     if(DictClassModel != nil){
@@ -306,11 +306,16 @@
                                     }
                                 }
                             }else{
-                                // error
+                                    NSMutableDictionary *newDict = [NSMutableDictionary dictionary];
+                                    [(NSDictionary *)obj enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                                        newDict[key] = [obj cs_modelCopy];
+                                    }];
+                                    ((void (*)(id,SEL,id))(void *)objc_msgSend)(model,propertyInfo->_setter,newDict);
+                                    break;
                             }
                         }else if (propertyInfo->_objectType == CSObjectTypeNSArray && [obj isKindOfClass:[NSArray class]]) {
-                            if ([cls respondsToSelector:@selector(CSModelArrayWithModelMapping)]) {
-                                NSDictionary *modelMappingArray = [cls performSelector:@selector(CSModelArrayWithModelMapping)] ;
+                            if ([model respondsToSelector:@selector(CSModelArrayWithModelMapping)]) {
+                                NSDictionary *modelMappingArray = [model performSelector:@selector(CSModelArrayWithModelMapping)] ;
                                 if ([modelMappingArray objectForKey:key] != nil) {
                                     Class ArrayClassModel =  [modelMappingArray objectForKey:key];
                                     if (ArrayClassModel != nil) {
@@ -324,7 +329,12 @@
                                     }
                                 }
                             }else{
-                                // error -- not conform array-model mapping
+                                NSMutableArray *newArray = [NSMutableArray array];
+                                [(NSArray *)obj enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                                    [newArray addObject:[obj cs_modelCopy]];
+                                }];
+                                [model setValue:newArray forKey:key];
+                                break;
                             }
                         }else{
                             id newObject =  [propertyInfo->_class cs_modelWithJSONObject:obj];
@@ -392,7 +402,7 @@
     return model;
 }
 
-+(nullable id)cs_modelArrayWithJSONObject:(nullable id)jsonObject{
++ (nullable id)cs_modelArrayWithJSONObject:(nullable id)jsonObject{
     NSMutableArray *modelArray = [NSMutableArray array];
     if ([jsonObject isKindOfClass:[NSArray class]]) {
         [((NSArray *)jsonObject) enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -402,7 +412,7 @@
     return modelArray;
 }
 
-+(id)cs_modelWithDictionary:(id)dict{
++ (id)cs_modelWithDictionary:(id)dict{
     Class cls = [self class];
     id model = [cls new];
     CSClassInfo *selfClassInfo = getClassInfo(cls);
@@ -426,8 +436,8 @@
                         }else if(obj == (id)kCFNull){
                             break;
                         }else if(propertyInfo->_objectType == CSObjectTypeNSDictionary && [obj isKindOfClass:[NSDictionary class]]){
-                            if ([cls respondsToSelector:@selector(CSModelDictionaryKeyWithModelMapping)]) {
-                                NSDictionary *modelMappingDictionary = [cls CSModelDictionaryKeyWithModelMapping] ;
+                            if ([model respondsToSelector:@selector(CSModelDictionaryKeyWithModelMapping)]) {
+                                NSDictionary *modelMappingDictionary = [model CSModelDictionaryKeyWithModelMapping] ;
                                 if ([modelMappingDictionary objectForKey:key] != nil) {
                                     Class DictClassModel =  [modelMappingDictionary objectForKey:key];
                                     if(DictClassModel != nil){
@@ -440,10 +450,17 @@
                                         break;
                                     }
                                 }
+                            } else {
+                                NSMutableDictionary *newDict = [NSMutableDictionary dictionary];
+                                [(NSDictionary *)obj enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                                    newDict[key] = [obj cs_modelCopy];
+                                }];
+                                ((void (*)(id,SEL,id))(void *)objc_msgSend)(model,propertyInfo->_setter,newDict);
+                                break;
                             }
                         }else if (propertyInfo->_objectType == CSObjectTypeNSArray && [obj isKindOfClass:[NSArray class]]) {
-                            if ([cls respondsToSelector:@selector(CSModelArrayWithModelMapping)]) {
-                                NSDictionary *modelMappingArray = [cls performSelector:@selector(CSModelArrayWithModelMapping)] ;
+                            if ([model respondsToSelector:@selector(CSModelArrayWithModelMapping)]) {
+                                NSDictionary *modelMappingArray = [model performSelector:@selector(CSModelArrayWithModelMapping)] ;
                                 if ([modelMappingArray objectForKey:key] != nil) {
                                     Class ArrayClassModel =  [modelMappingArray objectForKey:key];
                                     if (ArrayClassModel != nil) {
@@ -456,6 +473,13 @@
                                         break;
                                     }
                                 }
+                            }else {
+                                NSMutableArray *newArray = [NSMutableArray array];
+                                [(NSArray *)obj enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                                    [newArray addObject:[obj cs_modelCopy]];
+                                }];
+                                [model setValue:newArray forKey:key];
+                                break;
                             }
                         }else{
                             id newObject =  [propertyInfo->_class cs_modelWithJSONObject:obj];
@@ -525,12 +549,12 @@
     return model;
 }
 
-+(id)cs_modelWithJSONString:(NSString *)jsonString{
++ (id)cs_modelWithJSONString:(NSString *)jsonString{
     NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
     return [self cs_modelWithJSONObject:jsonObject];
 }
 
--(BOOL)cs_isEqualToValue:(id)model{
+- (BOOL)cs_isEqualToValue:(id)model{
     // point
     if (self == model) return YES;
     // nil
@@ -778,7 +802,7 @@ static id praseJSONModel(__unsafe_unretained id model){
 
 
 #pragma mark NSCoding protocol
--(id)cs_decoder:(NSCoder *)aDecoder{
+- (id)cs_decoder:(NSCoder *)aDecoder{
     BOOL secureAvailable = [aDecoder respondsToSelector:@selector(decodeObjectOfClass:forKey:)];
     BOOL secureSupported = NO;
     if ([[self class] resolveClassMethod:@selector(supportsSecureCoding)]) {
@@ -802,7 +826,7 @@ static id praseJSONModel(__unsafe_unretained id model){
     return self;
 }
 
--(void)cs_encode:(NSCoder *)encoder{
+- (void)cs_encode:(NSCoder *)encoder{
     CSClassInfo *selfClassInfo = getClassInfo([self class]);
     [selfClassInfo->_propertyMapper enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, CSModelProperty *  _Nonnull propertyInfo, BOOL * _Nonnull stop) {
         id object = [self valueForKey:propertyInfo->_name];
@@ -812,11 +836,11 @@ static id praseJSONModel(__unsafe_unretained id model){
     }];
 }
 
--(NSArray*)_backlist{
+- (NSArray*)_backlist{
     return @[@"hash",@"superclass",@"description",@"debugDescription"];
 }
 
--(NSString *)cs_description{
+- (NSString *)cs_description{
     CSClassInfo *selfClassInfo = getClassInfo([self class]);
     NSDictionary *objectProperyDict = selfClassInfo->_propertyMapper;
     NSMutableString *printStr = [NSMutableString string];
@@ -831,7 +855,7 @@ static id praseJSONModel(__unsafe_unretained id model){
 }
 
 
--(void)cs_enumerateModelKeysAndObjectUsingBlock:(void (NS_NOESCAPE ^)(NSString *key, id obj, BOOL *stop))block {
+- (void)cs_enumerateModelKeysAndObjectUsingBlock:(void (NS_NOESCAPE ^)(NSString *key, id obj, BOOL *stop))block {
     unsigned int count;
     Class class = self.class;
     objc_property_t *properties =  class_copyPropertyList(class, &count);

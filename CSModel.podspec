@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CSModel'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'CSModel is a concise and efficient model framework for iOS/OSX, and provides nested Model to compare values and copy values.'
   s.description      = <<-DESC
    CSModel is a concise and efficient model framework for iOS/OSX. '

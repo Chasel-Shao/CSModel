@@ -42,9 +42,9 @@ CSModel 是一个简洁高效的Model和JSON转换的框架，并且支持嵌套
 
 // Model:
 @interface Person : NSObject
-@property (nonatomic,assign) UInt64 uid;
-@property (nonatomic,copy) NSString *name;
-@property (nonatomic,assign) NSInteger age;
+@property (nonatomic, assign) UInt64 uid;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) NSInteger age;
 @end
 @implementation Person
 @end
@@ -85,9 +85,9 @@ NSArray *array = [Person cs_modelArrayWithJSONObject:jsonArray];
 ```objc
 // Model 
 @interface Teacher : NSObject
-@property(nonatomic,copy)NSString *name;
-@property(nonatomic,assign)NSInteger age;
-@property(nonatomic,copy)NSString *books;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) NSInteger age;
+@property (nonatomic, copy) NSString *books;
 @end
 @implementation Teacher
 @end
@@ -104,17 +104,17 @@ Teacher *teacher1 = [Teacher cs_modelCopyFromModel:p];
 ### Model 的 description 的实现
 ```objc
 // 在模型的.m文件中实现以下方法
--(NSString *)description{
+- (NSString *)description{
     return [self cs_description];
 }
 ```
 ### Model 的 Coding 的实现
 ```objc
 // 在模型的.m文件中实现以下方法
--(void)encodeWithCoder:(NSCoder *)aCoder{
+- (void)encodeWithCoder:(NSCoder *)aCoder{
     [self cs_encode:aCoder];
 }
--(instancetype)initWithCoder:(NSCoder *)aDecoder{
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
     return [self cs_decoder:aDecoder];
 }
 ```
@@ -137,7 +137,7 @@ Teacher *teacher1 = [Teacher cs_modelCopyFromModel:p];
 
 作者
 ==============
-- [Chasel-Shao](https://github.com/Chasel-Shao) 753080265@qq.com
+- [Chasel-Shao](https://github.com/Chasel-Shao)
 
 
 许可证

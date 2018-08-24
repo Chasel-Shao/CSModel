@@ -42,9 +42,9 @@ Getting Started
 
 // Model:
 @interface Person : NSObject
-@property (nonatomic,assign) UInt64 uid;
-@property (nonatomic,copy) NSString *name;
-@property (nonatomic,assign) NSInteger age;
+@property (nonatomic, assign) UInt64 uid;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) NSInteger age;
 @end
 @implementation Person
 @end
@@ -89,9 +89,9 @@ NSArray *array = [Person cs_modelArrayWithJSONObject:jsonArray];
 ```objc
 // Model 
 @interface Teacher : NSObject
-@property(nonatomic,copy)NSString *name;
-@property(nonatomic,assign)NSInteger age;
-@property(nonatomic,copy)NSString *books;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) NSInteger age;
+@property (nonatomic, copy) NSString *books;
 @end
 @implementation Teacher
 @end
@@ -108,17 +108,17 @@ Teacher *teacher1 = [Teacher cs_modelCopyFromModel:p];
 ### The description method
 ```objc
 // Implementing the method in the `.m file` of the Model
--(NSString *)description{
+- (NSString *)description{
     return [self cs_description];
 }
 ```
 ### The coding method
 ```objc
 // Implementing the following method in the `.m file` of the Model
--(void)encodeWithCoder:(NSCoder *)aCoder{
+- (void)encodeWithCoder:(NSCoder *)aCoder{
     [self cs_encode:aCoder];
 }
--(instancetype)initWithCoder:(NSCoder *)aDecoder{
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
     return [self cs_decoder:aDecoder];
 }
 ```
@@ -141,7 +141,7 @@ Installation
 
 Author
 ==============
-- [Chasel-Shao](https://github.com/Chasel-Shao) 753080265@qq.com
+- [Chasel-Shao](https://github.com/Chasel-Shao)
 
 
 License
